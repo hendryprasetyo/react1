@@ -1,84 +1,14 @@
-import {useState} from 'react'
+import Calculator from './components/calculator'
+import Card from './components/card'
 
-function App() {
-  const [calc, setCalc] = useState("")
-  const [result, setResult] = useState("")
-
-  const ops = ['/', '*', '+', '-', '.']
-
-  const updateCalc = value => {
-    if (
-      ops.includes(value) && calc === '' ||
-      ops.includes(value) && ops.includes(calc.slice(-1)
-      )
-    ) {
-      return
-    }
-
-    setCalc(calc + value)
-
-    if (!ops.includes(value)) {
-      setResult(eval(calc + value).toString())
-    }
-  }
-
-  const createDigits = () => {
-    const digits = []
-
-    for (let i = 1; i < 10; i++) {
-      digits.push(
-          <button 
-              onClick={() => updateCalc(i.toString())} key={i}>
-              {i}
-            </button>
-      )
-    }
-
-    return digits
-  }
-
-  const calcaulate = () => {
-    setCalc(eval(calc).toString())
-  }
-
-  const deleteLast = () => {
-    if (calc == '') {
-      return
-    }
-
-    const value = calc.slice(0, -1)
-
-    setCalc(value)
-
-  }
-
-  return (
-    <div className="app">
-      <div className="calculator">
-        <div className="display">
-          {result ? <span>({result})</span> : ''}&nbsp;
-          { calc || "0" }
-        </div>
-
-        <div className="operators">
-          <button onClick={() => updateCalc('/')}>/</button>
-          <button onClick={() => updateCalc('*')}>*</button>
-          <button onClick={() => updateCalc('+')}>+</button>
-          <button onClick={() => updateCalc('-')}>-</button>
-
-          <button onClick={deleteLast}>DEL</button>
-        </div>
-
-        <div className="digits">
-          { createDigits() }
-          <button  onClick={() => updateCalc('0')}>0</button>
-          <button onClick={() => updateCalc('.')}>.</button>
-
-          <button onClick={calcaulate}>=</button>
-        </div>
-      </div>
-    </div>
-  );
+function App(){
+  return(
+    <>
+    <Calculator/>
+    <Card title="air jordan1" desk="ini adalah air jordan 1 yang terbaru"/>
+    <Card title="airjordan 2" desk="ini adalah airjordan 2paling anyar"/>
+    </>
+  )  
 }
 
-export default App;
+export default App
